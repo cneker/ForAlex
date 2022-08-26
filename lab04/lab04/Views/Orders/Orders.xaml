@@ -1,0 +1,28 @@
+﻿<Window x:Class="lab04.Views.Orders.Orders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab04.Views.Orders"
+        mc:Ignorable="d"
+        Title="Orders" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="DtaGrid" x:FieldModifier="public" ItemsSource="{Binding Orders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,0,140,0"  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding UpdateOrder}"/>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Name" Header="Name" Binding="{Binding Item.Name}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="Price" Header="Price" Binding="{Binding Item.Price}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="Amount" Header="Amount" Binding="{Binding Amount}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="Organization" Header="Organization" Binding="{Binding Organization.Name}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="Employee" Header="Employee" Binding="{Binding Employee.LastName}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Make order"  Margin="680,57,27,329" Command="{Binding MakeOrder}"/>
+        <TextBox Margin="680,181,12,217" Text="{Binding FilterName}"/>
+        <Button Content="Filter"  Margin="688,233,20,153" Command="{Binding FilterOrdersByName}"/>
+    </Grid>
+</Window>

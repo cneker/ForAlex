@@ -1,0 +1,21 @@
+﻿<Window x:Class="lab04.Views.Orders.MakeOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab04.Views.Orders"
+        mc:Ignorable="d"
+        Title="MakeOrder" Height="250" Width="250">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="200">
+        <TextBlock Text="Item"/>
+        <ComboBox x:Name="Item" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedOrder.Item}"/>
+        <TextBlock Text="Organization"/>
+        <ComboBox x:Name="Organization" ItemsSource="{Binding Organizations}" SelectedItem="{Binding SelectedOrder.Organization}"/>
+        <TextBlock Text="Employee"/>
+        <ComboBox x:Name="Employee" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedOrder.Employee}"/>
+        <TextBlock Text="Amount"/>
+        <TextBox x:Name="Amount" Text="{Binding SelectedOrder.Amount}"/>
+        <TextBlock/>
+        <Button Content="Add" Command="{Binding MakeOrder}" Click="Accept_Click"/>
+    </StackPanel>
+</Window>

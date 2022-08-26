@@ -1,0 +1,22 @@
+﻿<Window x:Class="lab04.Views.Employees.EmployeeInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab04.Views.Employees"
+        mc:Ignorable="d"
+        Title="EmployeeInfo" Height="250" Width="250">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="200">
+        <TextBlock Text="FName"/>
+        <TextBox x:Name="FName" Text="{Binding SelectedEmployee.FirstName}"/>
+        <TextBlock Text="LName"/>
+        <TextBox x:Name="LName" Text="{Binding SelectedEmployee.LastName}"/>
+        <TextBlock Text="Age"/>
+        <TextBox x:Name="Age" Text="{Binding SelectedEmployee.Age}"/>
+        <TextBlock Text="Position"/>
+        <ComboBox x:Name="Position" ItemsSource="{Binding Positions}" SelectedItem="{Binding SelectedEmployee.Position}"/>
+        <TextBlock/>
+        <Button Content="Update" Command="{Binding UpdateEmployee}" Click="Accept_Click"/>
+        <Button Content="Delete" Command="{Binding DeleteEmployee}" Click="Accept_Click"/>
+    </StackPanel>
+</Window>
