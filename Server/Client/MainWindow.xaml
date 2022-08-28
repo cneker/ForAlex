@@ -1,0 +1,18 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Name="grid">
+        <Button Margin="37,327,626,45" Content="Connect" Click="Connect"></Button>
+        <TextBox x:Name="Number" Margin="400,327,238,45"/>
+        <Button x:Name="ChooseButton" Margin="576,327,87,45" Content="Choose" Click="Choose"></Button>
+        <StatusBar Margin="0,394,0,0">
+            <TextBlock x:Name="Status"/>
+            <TextBlock x:Name="Error"/>
+        </StatusBar>
+    </Grid>
+</Window>
