@@ -14,7 +14,12 @@ namespace Repository
         {
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync() => await GetAll().ToListAsync();
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync() => 
+            await GetAll()
+            .Include(o => o.Organization)
+            .Include(o => o.Employee)
+            .Include(o => o.Item)
+            .ToListAsync();
         public void CreateOrder(Order order) => Create(order);
         public void DeleteOrder(Order order) => Delete(order);
     }

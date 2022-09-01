@@ -11,6 +11,7 @@ namespace Entities
     {
         public RepositoryContext()
         {
+            //удаляем старую и создаем новую бд
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }

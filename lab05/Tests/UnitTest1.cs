@@ -2,8 +2,10 @@ using lab05;
 
 namespace Tests
 {
+    //тесты для первого задания
     public class UnitTest1
     {
+        //вариант без long
         //[Fact]
         //public void TestSmallInt()
         //{
@@ -18,7 +20,7 @@ namespace Tests
         //    //assert
         //    Assert.Equal(expected, actual);
         //}
-
+        //вариант c long
         [Fact]
         public void TestBigInt2()
         {
@@ -31,7 +33,7 @@ namespace Tests
             Assert.Equal(expected, actual);
         }
     }
-
+    //тесты для второго задания
     public class UnitTest2
     {
         [Fact]
@@ -115,7 +117,7 @@ namespace Tests
             Assert.Equal(expected, result);
         }
     }
-
+    //тесты для третьего задания
     public class UnitTest3
     {
         private lab05.Stack<string> _stack = new lab05.Stack<string>();

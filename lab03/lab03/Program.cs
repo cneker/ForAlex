@@ -9,7 +9,9 @@ namespace lab03
         {
             MainAsync().GetAwaiter().GetResult();
         }
-
+        //библиотека классов entities - модели для работы с бд (представляют таблицы бд)
+        //repositpry - репозиторий для работы с каждой моделью (таблицей бд)
+        //repositorycontext - контекст бд (указываются строка подключения к бд, таблицы бд)
         static async Task MainAsync()
         {
             RepositoryContext context = new RepositoryContext();
@@ -22,7 +24,7 @@ namespace lab03
 
 
         }
-
+        //заполняем таблицы (коламнда add)
         static async Task Initialization(RepositoryManager repository)
         {
             repository.PosititonRepository.CreatePosition(
@@ -104,9 +106,10 @@ namespace lab03
                 });
             await repository.SaveAsync();
         }
-
+        //выборка из бд
         static async Task SelectAll(RepositoryManager repository)
         {
+            //select
             var employees = await repository.EmployeeRepository.GetAllEmployeesAsync();
             var items = await repository.ItemRepository.GetAllItemsAsync();
 
@@ -120,15 +123,16 @@ namespace lab03
             {
                 Console.WriteLine(item);
             }
-
+            //select .. order by
             items = await repository.ItemRepository.GetAllItemsOrderedByPriceAscAsync();
             Console.WriteLine("ITEMS Ordered by price ASC:");
             foreach (var item in items)
             {
                 Console.WriteLine(item);
             }
-        }
 
+        }
+        //удаление (delete)
         static async Task DeleteItem(RepositoryManager repository)
         {
             var item = (await repository.ItemRepository.GetAllItemsAsync()).LastOrDefault();
@@ -142,7 +146,7 @@ namespace lab03
                 Console.WriteLine(item1);
             }
         }
-
+        //обновление строки (update)
         static async Task UpdateEmployeeAge(RepositoryManager repository)
         {
             Console.WriteLine("before update");

@@ -24,9 +24,12 @@ namespace lab02
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        //эта херня нужна для паузы
         static ManualResetEvent _suspend = new ManualResetEvent(true);
+        //а эта херня для остановки таска
         static CancellationTokenSource _cancelTokenSource;
         CancellationToken _token;
+
         Task _task;
         bool _isPaused;
         bool _isRunning;
@@ -46,7 +49,7 @@ namespace lab02
             InitializeComponent();
             DataContext = this;
         }
-
+        //действие кнопки старт
         void Start(Object sender, RoutedEventArgs e)
         {
             _cancelTokenSource = new CancellationTokenSource();
@@ -57,7 +60,7 @@ namespace lab02
             IsRunning = true;
             _isPaused = false;
         }
-
+        //действие кнопки пауза
         void Pause(Object sender, RoutedEventArgs e)
         {
             if(_isPaused)
@@ -66,7 +69,7 @@ namespace lab02
                 _suspend.Reset();
             _isPaused = !_isPaused;
         }
-
+        //действие кнопки стоп
         void Stop(Object sender, RoutedEventArgs e)
         {
             _cancelTokenSource.Cancel();
@@ -74,16 +77,19 @@ namespace lab02
                 _suspend.Set();
             IsRunning = false;
         }
-
+        //алгоритм подсчета
         void Calculate(int n)
         {
             double sum = 0;
             for (int k = 0; k <= n; k++)
             {
+                //для паузы
                 _suspend.WaitOne(Timeout.Infinite);
+                //если нажата кнопка стоп
                 if (_token.IsCancellationRequested)
                     return;
                 var temp = 1 / Math.Pow(2, k);
+                //выводим на экран значение каждые 0.5 секунды
                 TextVlock.Dispatcher.Invoke(() => TextVlock.Text = temp.ToString());
                 sum += temp;
                 Thread.Sleep(500);
@@ -91,7 +97,7 @@ namespace lab02
             TextVlock.Dispatcher.Invoke(() => TextVlock.Text = sum.ToString());
             IsRunning = false;
         }
-
+        //получаем число, введенное пользователем
         private int GetN() => int.Parse(TextBoxN.Text);
 
         public event PropertyChangedEventHandler? PropertyChanged;

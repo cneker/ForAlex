@@ -2,6 +2,7 @@
 
 namespace lab05
 {
+    //описаны все тестируемые классы (читай задание)
     public class Sum
     {
         public static long Accum(params int[] values) => values.Select(Convert.ToInt64).Sum();
